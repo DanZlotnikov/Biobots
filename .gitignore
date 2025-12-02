@@ -1,0 +1,10 @@
+# Ignore ANY folder named "output" anywhere in the project
+**/output/
+
+# Ignore ALL files inside those output folders
+**/output/**
+
+# Ignore all mp4 and jpg files anywhere
+*.mp4
+*.jpg
+*.jpeg
