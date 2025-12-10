@@ -49,6 +49,7 @@ class LiveCamera:
             if start != -1 and end != -1:
                 jpg = self.buffer[start:end+2]
                 self.buffer = self.buffer[end+2:]
+                self.latest_jpeg = jpg
 
                 # decode
                 frame = cv2.imdecode(np.frombuffer(jpg, np.uint8), cv2.IMREAD_COLOR)

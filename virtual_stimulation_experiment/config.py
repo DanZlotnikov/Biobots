@@ -6,7 +6,7 @@
 CAMERA_INDEX = 0
 
 # Scaling
-SCALE = 0.4
+SCALE = 0.2
 
 # Movement area ratio
 AREA_RATIO = 0.001
@@ -39,8 +39,15 @@ LED_FLASK_PORT = 5000
 LED_GPIO_PIN = 21
 
 # LED blinking timing parameters
-STIM_INTERVAL  = 5        # every 5 seconds start blinking
+STIM_INTERVAL = 10        # every 5 seconds start blinking
 BLINK_ON = 0.5
 BLINK_OFF = 0.5
 BLINK_COUNT = 3
-RESPONSE_WINDOW = 2       # fish has 2 seconds to respond
+STIM_RESPONSE_WINDOW = 3       # fish has 2 seconds to respond
+
+
+# ============================
+# Windows Stimulator API Config
+# ============================
+STIM_TRIG_BASE_URL = "http://172.20.10.2:5555/stim"
+MAKE_SOUND_URL = "http://172.20.10.2:5555/make_sound"
