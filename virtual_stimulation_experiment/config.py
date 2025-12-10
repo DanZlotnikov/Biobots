@@ -24,11 +24,11 @@ MORPH_KERNEL_SMALL = (3, 3)
 MEDIAN_BLUR_SIZE = 5
 
 # Sliding window smoothing
-WINDOW_SIZE = 30
-THRESHOLD_COUNT = 15
+WINDOW_SIZE = 15
+THRESHOLD_COUNT = 12
 
 # Cooldown frames
-COOLDOWN_DURATION = 10
+COOLDOWN_DURATION = 3
 
 
 # ============================
@@ -38,5 +38,9 @@ COOLDOWN_DURATION = 10
 LED_FLASK_PORT = 5000
 LED_GPIO_PIN = 21
 
+# LED blinking timing parameters
+STIM_INTERVAL  = 5        # every 5 seconds start blinking
+BLINK_ON = 0.5
+BLINK_OFF = 0.5
 BLINK_COUNT = 3
-BLINK_DURATION = 0.2  # seconds
+RESPONSE_WINDOW = 2       # fish has 2 seconds to respond
