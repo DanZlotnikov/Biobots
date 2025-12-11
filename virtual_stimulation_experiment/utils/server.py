@@ -26,7 +26,6 @@ def set_camera_instance(cam):
 def mjpeg_generator():
     """
     Yields JPEG frames as an MJPEG stream.
-    Browser URL:  http://<pi-ip>:5000/stream
     """
     global camera_instance
 
@@ -48,7 +47,7 @@ def mjpeg_generator():
         time.sleep(0.001)
 
 
-@app.route("/stream")
+@app.route("/")
 def stream():
     """
     Returns an MJPEG response for browser display.
@@ -69,5 +68,4 @@ def start_flask():
     main.py does:
         threading.Thread(target=start_flask, daemon=True).start()
     """
-    print("🌐 Flask video server running at http://<pi-ip>:5000/stream")
     app.run(host="0.0.0.0", port=config.LED_FLASK_PORT, debug=False, threaded=True)

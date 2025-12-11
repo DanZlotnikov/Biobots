@@ -8,26 +8,6 @@ import time
 app = Flask(__name__)
 
 # ============================
-# LED SETUP
-# ============================
-led = LED(21)
-
-@app.get("/on")
-def turn_on():
-    led.on()
-    return "LED ON"
-
-@app.get("/off")
-def turn_off():
-    led.off()
-    return "LED OFF"
-
-@app.get("/")
-def root():
-    return "Use /stream, /on, /off"
-
-
-# ============================
 # CAMERA SETUP (PicamZero)
 # ============================
 cam = Camera()
@@ -95,7 +75,7 @@ def generate_frames():
         time.sleep(0.001)   # reduce CPU load slightly
 
 
-@app.get("/stream")
+@app.get("/")
 def stream():
     return Response(
         generate_frames(),

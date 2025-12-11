@@ -28,8 +28,9 @@ class OutputManager:
         """Write video at correct FPS and save timestamps."""
         print(f"\nWriting video with real FPS = {real_fps:.2f}")
 
-        fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-        vw = cv2.VideoWriter(self.video_path, fourcc, real_fps, frame_size)
+        fourcc = 0  # AVI uncompressed
+        vw = cv2.VideoWriter(self.video_path.replace(".mp4", ".avi"), fourcc, real_fps, frame_size)
+
 
         for f in self.frames:
             vw.write(f)

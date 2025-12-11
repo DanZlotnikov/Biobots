@@ -6,10 +6,10 @@
 CAMERA_INDEX = 0
 
 # Scaling
-SCALE = 0.2
+SCALE = 1
 
 # Movement area ratio
-AREA_RATIO = 0.001
+AREA_RATIO = 0.0005
 
 # Color (HSV) for orange fish
 ORANGE_LOW  = (0, 50, 40)
@@ -25,7 +25,7 @@ MEDIAN_BLUR_SIZE = 5
 
 # Sliding window smoothing
 WINDOW_SIZE = 15
-THRESHOLD_COUNT = 12
+THRESHOLD_COUNT = 10
 
 # Cooldown frames
 COOLDOWN_DURATION = 3

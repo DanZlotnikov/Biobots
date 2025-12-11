@@ -1,12 +1,6 @@
 import cv2
-from gpiozero import LED
-import time
 import config
-from concurrent.futures import ThreadPoolExecutor
-import requests
-
-executor = ThreadPoolExecutor(max_workers=2)
-led = LED(config.LED_GPIO_PIN)
+import winsound
 
 def draw_movement_overlay(frame):
     """
@@ -43,30 +37,18 @@ def draw_movement_overlay(frame):
         cv2.LINE_AA
     )
 
-
 def send_brain_stimulus():
-    executor.submit(_send_brain_stimulus_worker)
-
-def _send_brain_stimulus_worker():
-    try:
-        requests.get(config.STIM_TRIG_BASE_URL, timeout=2)
-    except requests.exceptions.RequestException as e:
-        print("Error:", e)
+    print("Sending brain stimulus trigger...")
 
 
 def make_sound():
-    executor.submit(_make_sound_worker)
-
-def _make_sound_worker():
-    try:
-        requests.get(config.MAKE_SOUND_URL, timeout=2)
-    except requests.exceptions.RequestException as e:
-        print("Error:", e)
+    winsound.Beep(500, 1000)  # frequency (Hz), duration (ms)
 
 
 def blink_led():
-    for _ in range(config.BLINK_COUNT):
-        led.on()
-        time.sleep(config.BLINK_ON)
-        led.off()
-        time.sleep(config.BLINK_OFF)
+    print("Blinking LED...")
+    # for _ in range(config.BLINK_COUNT):
+    #     led.on()
+    #     time.sleep(config.BLINK_ON)
+    #     led.off()
+    #     time.sleep(config.BLINK_OFF)
