@@ -6,26 +6,26 @@
 CAMERA_INDEX = 0
 
 # Scaling
-SCALE = 1
+SCALE = 0.6
 
 # Movement area ratio
-AREA_RATIO = 0.0005
+AREA_RATIO = 0.001
 
 # Color (HSV) for orange fish
 ORANGE_LOW  = (0, 50, 40)
 ORANGE_HIGH = (28, 255, 255)
 
 # Background subtractor
-MOG2_HISTORY = 50
+MOG2_HISTORY = 100
 MOG2_VAR_THRESHOLD = 4
 
 # Morphology
-MORPH_KERNEL_SMALL = (3, 3)
-MEDIAN_BLUR_SIZE = 5
+MORPH_KERNEL_SMALL = (5, 5)
+MEDIAN_BLUR_SIZE = 7
 
 # Sliding window smoothing
 WINDOW_SIZE = 15
-THRESHOLD_COUNT = 10
+THRESHOLD_COUNT = 12
 
 # Cooldown frames
 COOLDOWN_DURATION = 3
@@ -44,7 +44,7 @@ BLINK_ON = 0.5
 BLINK_OFF = 0.5
 BLINK_COUNT = 3
 STIM_RESPONSE_WINDOW = 3       # fish has 2 seconds to respond
-
+STIM_RESPONSE_WINDOW_START_DELAY = 1.0  # after LED blink
 
 # ============================
 # Windows Stimulator API Config

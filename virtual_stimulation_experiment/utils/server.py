@@ -1,71 +1,53 @@
-# server.py
+# utils/server.py
 import time
-from flask import Flask, Response, stream_with_context
-import config
+from flask import Flask, Response
 
-# This will be assigned externally by main.py
-camera_instance = None
-
-# =========================================
-#  Flask App Setup
-# =========================================
 app = Flask(__name__)
+
+# Camera instance injected from main.py
+_camera = None
 
 
 def set_camera_instance(cam):
-    """
-    Called from main.py to attach the LiveCamera instance.
-    """
-    global camera_instance
-    camera_instance = cam
-
-
-# =========================================
-#  MJPEG STREAM GENERATOR
-# =========================================
-def mjpeg_generator():
-    """
-    Yields JPEG frames as an MJPEG stream.
-    """
-    global camera_instance
-
-    while True:
-        if camera_instance and camera_instance.latest_jpeg:
-            try:
-                # Standard multipart/x-mixed-replace MJPEG structure
-                yield (
-                    b"--frame\r\n"
-                    b"Content-Type: image/jpeg\r\n\r\n" +
-                    camera_instance.latest_jpeg +
-                    b"\r\n"
-                )
-            except GeneratorExit:
-                # Client disconnected
-                return
-
-        # Prevents this loop from using 100% CPU
-        time.sleep(0.001)
+    global _camera
+    _camera = cam
 
 
 @app.route("/")
-def stream():
+def video_feed():
     """
-    Returns an MJPEG response for browser display.
+    Single-client MJPEG stream.
+    Always sends the most recent frame only.
+    Old frames are dropped.
     """
+
+    def generate():
+        while True:
+            if _camera is None:
+                time.sleep(0.05)
+                continue
+
+            jpeg = _camera.get_latest_jpeg()
+            if jpeg is None:
+                time.sleep(0.01)
+                continue
+
+            yield (
+                b"--frame\r\n"
+                b"Content-Type: image/jpeg\r\n\r\n"
+                + jpeg +
+                b"\r\n"
+            )
+
+            # Network pacing (prevents client-side buffering)
+            time.sleep(0.03)  # ~30 FPS max
+
     return Response(
-        stream_with_context(mjpeg_generator()),
+        generate(),
         mimetype="multipart/x-mixed-replace; boundary=frame"
     )
 
 
-# =========================================
-#  START SERVER (RUN IN BACKGROUND THREAD)
-# =========================================
-def start_flask():
-    """
-    Start Flask server in a background thread.
-
-    main.py does:
-        threading.Thread(target=start_flask, daemon=True).start()
-    """
-    app.run(host="0.0.0.0", port=config.LED_FLASK_PORT, debug=False, threaded=True)
+def start_flask(host="0.0.0.0", port=5000):
+    # Single client → no threading needed
+    app.run(host=host, port=port, use_reloader=False)

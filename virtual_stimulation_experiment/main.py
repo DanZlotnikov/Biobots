@@ -18,7 +18,7 @@ def main():
     set_camera_instance(cam)
     detector = MovementDetector(cam.width, cam.height)
     output = OutputManager()
-    stim.connect()
+    # stim.connect()
 
     # Start Flask server
     threading.Thread(target=start_flask, daemon=True).start()
@@ -46,8 +46,8 @@ def main():
                 print(f"💡 Triggering LED blink at t={now:.3f}")
                 threading.Thread(target=general_utils.blink_led, daemon=True).start()
                 threading.Thread(target=general_utils.make_sound, daemon=True).start()
-                response_window_start = now + 0.3
-                response_window_end = response_window_start + config.STIM_RESPONSE_WINDOW
+                response_window_start = now + config.STIM_RESPONSE_WINDOW_START_DELAY
+                response_window_end = now + config.STIM_RESPONSE_WINDOW
                 waiting_for_response = True
                 next_blink_time = now + config.STIM_INTERVAL
 
@@ -71,7 +71,7 @@ def main():
 
             ret, jpeg = cv2.imencode(".jpg", frame)
             if ret:
-                cam.latest_jpeg = jpeg.tobytes()
+                cam.update_jpeg(jpeg.tobytes())
 
             output.save_frame(frame)
 

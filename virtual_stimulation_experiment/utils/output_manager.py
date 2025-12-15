@@ -1,46 +1,68 @@
-# output_manager.py
-import os
+# utils/output_manager.py
 import cv2
+import os
+import time
+
 
 class OutputManager:
-    def __init__(self, output_dir="output", video_name="annotated_live_stream.mp4", log_name="movement_times.txt"):
-        self.output_dir = output_dir
+    def __init__(self, output_dir="output"):
         os.makedirs(output_dir, exist_ok=True)
 
-        self.video_path = os.path.join(output_dir, video_name)
-        self.log_path = os.path.join(output_dir, log_name)
+        ts = time.strftime("%Y%m%d_%H%M%S")
+        self.video_path = os.path.join(output_dir, f"recording_{ts}.mp4")
 
-        # Clear old files
-        if os.path.exists(self.video_path): os.remove(self.video_path)
-        if os.path.exists(self.log_path): os.remove(self.log_path)
-
-        # Buffers
-        self.frames = []
-        self.movement_times = []
+        self.writer = None
+        self.frame_size = None
+        self.fps = 30  # temporary, corrected on close()
 
     def save_frame(self, frame):
-        self.frames.append(frame.copy())
+        # Lazy init so we don't allocate until first frame
+        if self.writer is None:
+            h, w = frame.shape[:2]
+            self.frame_size = (w, h)
 
-    def record_movement(self, timestamp):
-        self.movement_times.append(timestamp)
+            self.writer = cv2.VideoWriter(
+                self.video_path,
+                cv2.VideoWriter_fourcc(*"mp4v"),
+                self.fps,
+                self.frame_size
+            )
 
-    def close(self, real_fps, frame_size):
-        """Write video at correct FPS and save timestamps."""
-        print(f"\nWriting video with real FPS = {real_fps:.2f}")
+        # IMPORTANT: write immediately, never store
+        self.writer.write(frame)
 
-        fourcc = 0  # AVI uncompressed
-        vw = cv2.VideoWriter(self.video_path.replace(".mp4", ".avi"), fourcc, real_fps, frame_size)
+    def close(self, real_fps, frame_size=None):
+        if self.writer is None:
+            return
 
+        self.writer.release()
+        self.writer = None
 
-        for f in self.frames:
-            vw.write(f)
+        # Optional: fix FPS after capture
+        if real_fps and real_fps > 0:
+            self._rewrite_with_correct_fps(real_fps)
 
-        vw.release()
+    def _rewrite_with_correct_fps(self, real_fps):
+        temp_path = self.video_path + ".tmp.mp4"
 
-        # save timestamps
-        with open(self.log_path, "w") as f:
-            for t in self.movement_times:
-                f.write(t + "\n")
+        cap = cv2.VideoCapture(self.video_path)
+        w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-        print("✅ Annotated video saved.")
-        print("✅ Movement timestamps saved.")
+        writer = cv2.VideoWriter(
+            temp_path,
+            cv2.VideoWriter_fourcc(*"mp4v"),
+            real_fps,
+            (w, h)
+        )
+
+        while True:
+            ret, frame = cap.read()
+            if not ret:
+                break
+            writer.write(frame)
+
+        cap.release()
+        writer.release()
+
+        os.replace(temp_path, self.video_path)
