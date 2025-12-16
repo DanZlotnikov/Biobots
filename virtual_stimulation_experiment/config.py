@@ -34,14 +34,13 @@ COOLDOWN_DURATION = 3
 # ============================
 # LED Config
 # ============================
-
-LED_FLASK_PORT = 5000
-LED_GPIO_PIN = 21
+LED_COM_PORT = "COM3" 
+LED_BAUDRATE = 115200
 
 # LED blinking timing parameters
 STIM_INTERVAL = 10        # every 5 seconds start blinking
-BLINK_ON = 0.5
-BLINK_OFF = 0.5
+BLINK_ON = 0.3
+BLINK_OFF = 0.3
 BLINK_COUNT = 3
 STIM_RESPONSE_WINDOW = 3       # fish has 2 seconds to respond
 STIM_RESPONSE_WINDOW_START_DELAY = 1.0  # after LED blink

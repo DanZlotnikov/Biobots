@@ -1,6 +1,10 @@
 import cv2
 import config
 import winsound
+import serial
+import time
+
+ser = serial.Serial(config.LED_COM_PORT, config.LED_BAUDRATE, timeout=1)
 
 def draw_movement_overlay(frame):
     """
@@ -46,9 +50,8 @@ def make_sound():
 
 
 def blink_led():
-    print("Blinking LED...")
-    # for _ in range(config.BLINK_COUNT):
-    #     led.on()
-    #     time.sleep(config.BLINK_ON)
-    #     led.off()
-    #     time.sleep(config.BLINK_OFF)
+    for _ in range(config.BLINK_COUNT):
+        ser.write(b"ON\n")
+        time.sleep(config.BLINK_ON)
+        ser.write(b"OFF\n")
+        time.sleep(config.BLINK_OFF)

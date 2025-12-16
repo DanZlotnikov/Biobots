@@ -10,6 +10,7 @@ import config
 import utils.general_utils as general_utils
 from utils.server import set_camera_instance, start_flask
 import stim.stim as stim
+import serial
 
 
 def main():
