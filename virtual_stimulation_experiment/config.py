@@ -30,7 +30,6 @@ THRESHOLD_COUNT = 12
 # Cooldown frames
 COOLDOWN_DURATION = 3
 
-
 # ============================
 # LED Config
 # ============================
@@ -38,7 +37,7 @@ LED_COM_PORT = "COM3"
 LED_BAUDRATE = 115200
 
 # LED blinking timing parameters
-STIM_INTERVAL = 10        # every 5 seconds start blinking
+STIM_INTERVAL = 5     # every 5 seconds start blinking
 BLINK_ON = 0.3
 BLINK_OFF = 0.3
 BLINK_COUNT = 3

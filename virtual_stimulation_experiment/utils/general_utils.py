@@ -4,7 +4,11 @@ import winsound
 import serial
 import time
 
-ser = serial.Serial(config.LED_COM_PORT, config.LED_BAUDRATE, timeout=1)
+ser = None
+try:
+    ser = serial.Serial(config.LED_COM_PORT, config.LED_BAUDRATE, timeout=1)
+except:
+    print("⚠️  Warning: Could not connect to LED stimulator on specified COM port.")
 
 def draw_movement_overlay(frame):
     """
@@ -50,6 +54,9 @@ def make_sound():
 
 
 def blink_led():
+    if ser is None:
+        print("⚠️  Warning: LED stimulator not connected.")
+        return
     for _ in range(config.BLINK_COUNT):
         ser.write(b"ON\n")
         time.sleep(config.BLINK_ON)

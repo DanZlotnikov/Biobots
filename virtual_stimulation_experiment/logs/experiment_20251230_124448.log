@@ -1,0 +1,130 @@
+============================================================
+EXPERIMENT START
+Start time: 2025-12-30T12:44:48.660633
+============================================================
+[1767091488.662] TRIAL_START
+[1767091489.595] MOVEMENT
+[1767091489.642] MOVEMENT
+[1767091489.676] MOVEMENT
+[1767091489.706] MOVEMENT
+[1767091489.738] MOVEMENT
+[1767091489.770] MOVEMENT
+[1767091489.802] MOVEMENT
+[1767091489.834] MOVEMENT
+[1767091489.867] MOVEMENT
+[1767091491.738] MOVEMENT
+[1767091491.770] MOVEMENT
+[1767091491.801] MOVEMENT
+[1767091491.834] MOVEMENT
+[1767091491.883] MOVEMENT
+[1767091491.914] MOVEMENT
+[1767091491.947] MOVEMENT
+[1767091491.978] MOVEMENT
+[1767091492.010] MOVEMENT
+[1767091492.042] MOVEMENT
+[1767091492.074] MOVEMENT
+[1767091492.106] MOVEMENT
+[1767091492.139] MOVEMENT
+[1767091492.171] MOVEMENT
+[1767091492.203] MOVEMENT
+[1767091492.251] MOVEMENT
+[1767091492.283] MOVEMENT
+[1767091492.314] MOVEMENT
+[1767091492.346] MOVEMENT
+[1767091492.378] MOVEMENT
+[1767091492.410] MOVEMENT
+[1767091492.441] MOVEMENT
+[1767091492.474] MOVEMENT
+[1767091492.506] MOVEMENT
+[1767091492.539] MOVEMENT
+[1767091492.571] MOVEMENT
+[1767091492.619] MOVEMENT
+[1767091492.650] MOVEMENT
+[1767091492.682] MOVEMENT
+[1767091492.714] MOVEMENT
+[1767091492.746] MOVEMENT
+[1767091492.778] MOVEMENT
+[1767091498.692] STIMULATION type=visual+audio
+[1767091499.800] REACTION movement_within_response_window
+[1767091499.833] REACTION movement_within_response_window
+[1767091499.866] REACTION movement_within_response_window
+[1767091499.898] REACTION movement_within_response_window
+[1767091499.930] REACTION movement_within_response_window
+[1767091499.962] REACTION movement_within_response_window
+[1767091499.993] REACTION movement_within_response_window
+[1767091500.024] REACTION movement_within_response_window
+[1767091500.059] REACTION movement_within_response_window
+[1767091500.106] REACTION movement_within_response_window
+[1767091500.138] REACTION movement_within_response_window
+[1767091500.170] REACTION movement_within_response_window
+[1767091500.202] REACTION movement_within_response_window
+[1767091500.234] REACTION movement_within_response_window
+[1767091500.266] REACTION movement_within_response_window
+[1767091500.298] REACTION movement_within_response_window
+[1767091500.330] REACTION movement_within_response_window
+[1767091500.362] REACTION movement_within_response_window
+[1767091500.393] REACTION movement_within_response_window
+[1767091500.426] REACTION movement_within_response_window
+[1767091500.474] REACTION movement_within_response_window
+[1767091500.506] REACTION movement_within_response_window
+[1767091500.538] REACTION movement_within_response_window
+[1767091500.570] REACTION movement_within_response_window
+[1767091500.601] REACTION movement_within_response_window
+[1767091500.633] REACTION movement_within_response_window
+[1767091500.666] REACTION movement_within_response_window
+[1767091500.697] REACTION movement_within_response_window
+[1767091500.729] REACTION movement_within_response_window
+[1767091500.761] REACTION movement_within_response_window
+[1767091500.793] REACTION movement_within_response_window
+[1767091500.841] REACTION movement_within_response_window
+[1767091504.010] MOVEMENT
+[1767091504.041] MOVEMENT
+[1767091504.074] MOVEMENT
+[1767091504.106] MOVEMENT
+[1767091504.138] MOVEMENT
+[1767091504.170] MOVEMENT
+[1767091504.217] MOVEMENT
+[1767091504.249] MOVEMENT
+[1767091504.282] MOVEMENT
+[1767091504.314] MOVEMENT
+[1767091504.346] MOVEMENT
+[1767091504.378] MOVEMENT
+[1767091504.410] MOVEMENT
+[1767091504.441] MOVEMENT
+[1767091504.474] MOVEMENT
+[1767091504.505] MOVEMENT
+[1767091504.537] MOVEMENT
+[1767091504.589] MOVEMENT
+[1767091504.617] MOVEMENT
+[1767091504.650] MOVEMENT
+[1767091508.723] STIMULATION type=visual+audio
+[1767091509.658] MOVEMENT
+[1767091509.690] MOVEMENT
+[1767091509.722] MOVEMENT
+[1767091509.753] REACTION movement_within_response_window
+[1767091509.801] REACTION movement_within_response_window
+[1767091509.832] REACTION movement_within_response_window
+[1767091509.864] REACTION movement_within_response_window
+[1767091509.898] REACTION movement_within_response_window
+[1767091509.930] REACTION movement_within_response_window
+[1767091509.962] REACTION movement_within_response_window
+[1767091509.994] REACTION movement_within_response_window
+[1767091510.027] REACTION movement_within_response_window
+[1767091510.058] REACTION movement_within_response_window
+[1767091510.090] REACTION movement_within_response_window
+[1767091510.122] REACTION movement_within_response_window
+[1767091510.169] REACTION movement_within_response_window
+[1767091510.201] REACTION movement_within_response_window
+[1767091510.234] REACTION movement_within_response_window
+[1767091510.266] REACTION movement_within_response_window
+[1767091510.297] REACTION movement_within_response_window
+[1767091510.330] REACTION movement_within_response_window
+============================================================
+EXPERIMENT END
+End time: 2025-12-30T12:45:14.091445
+------------------------------------------------------------
+Total movements: 64
+Total stimulations: 2
+Total reactions to stimulation: 50
+Total movements NOT reactions: 14
+============================================================
